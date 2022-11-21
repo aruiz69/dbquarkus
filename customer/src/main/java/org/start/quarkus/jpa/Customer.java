@@ -23,7 +23,7 @@ import javax.persistence.Id;
  * }
  */
 @Entity
-public class MyEntity {
+public class Customer {
     private Long id;
     private String field;
 
