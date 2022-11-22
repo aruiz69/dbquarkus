@@ -1,16 +1,27 @@
 package org.start.quarkus.jpa;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.time.Instant;
 
 @Entity
 public class Customer {
-    private Long id;
-    private String field;
-
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String name;
+    private String lastName;
+    private String email;
+    private Instant createdDate = Instant.now();
+
+    public Customer() {
+    }
+
+    public Customer(String name, String lastName, String email) {
+        this.name = name;
+        this.lastName = lastName;
+        this.email = email;
+    }
+
     public Long getId() {
         return id;
     }
@@ -19,11 +30,35 @@ public class Customer {
         this.id = id;
     }
 
-    public String getField() {
-        return field;
+    public String getName() {
+        return name;
     }
 
-    public void setField(String field) {
-        this.field = field;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public Instant getCreatedDate() {
+        return createdDate;
+    }
+
+    public void setCreatedDate(Instant createdDate) {
+        this.createdDate = createdDate;
     }
 }
