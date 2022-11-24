@@ -1,6 +1,7 @@
 package org.start.quarkus.panache.entitylegacy;
 
 import javax.persistence.*;
+import javax.transaction.Transactional;
 import java.time.Instant;
 
 @Entity
@@ -9,9 +10,13 @@ public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(name = "first_name", length = 50)
     private String name;
+    @Column(name = "last_name", length = 50)
     private String lastName;
+    @Column(name = "e_mail", nullable = false)
     private String email;
+    @Transient
     private Instant createdDate = Instant.now();
 
     public Customer() {
