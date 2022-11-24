@@ -1,6 +1,7 @@
 package org.start.quarkus.panache.model;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
+import org.start.quarkus.panache.pojo.Artist;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -18,4 +19,7 @@ public class Item extends PanacheEntity {
     public BigDecimal price;
     @Column(name = "created_date")
     public Instant createdDate = Instant.now();
+    @ManyToOne
+    @JoinColumn(name="artis_fk")
+    public Artist artist;
 }

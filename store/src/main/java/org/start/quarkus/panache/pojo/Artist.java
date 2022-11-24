@@ -10,6 +10,11 @@ public class Artist {
     public Artist() {
     }
 
+    public Artist(String name, String bio) {
+        this.name = name;
+        this.bio = bio;
+    }
+
     public Artist(Long id, String name, String bio, Instant createdDate) {
         this.id = id;
         this.name = name;
