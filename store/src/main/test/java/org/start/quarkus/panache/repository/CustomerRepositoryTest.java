@@ -17,6 +17,7 @@ public class CustomerRepositoryTest {
     @Test
     @TestTransaction
     public void shouldCreateAndFindACustomer(){
+        assertTrue(customerRepository.listAllDans().size() <= customerRepository.count());
         Customer customer = new Customer("name","last name", "email");
         customerRepository.persist(customer);
         assertNotNull(customer.getId());

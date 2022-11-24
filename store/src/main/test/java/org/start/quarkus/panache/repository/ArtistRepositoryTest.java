@@ -18,15 +18,22 @@ public class ArtistRepositoryTest {
     @Test
     @TestTransaction
     public void shouldCreateAndFindAnArtist() {
+        long count = artistRepository.count();
+        int listAll = artistRepository.listAll().size();
+
         Artist artist = new Artist();
         artist.setName("name");
         artist.setBio("bio");
 
         artistRepository.persist(artist);
         assertNotNull(artist.getId());
+        assertEquals(count+1, artistRepository.count());
 
         artist = artistRepository.findById(artist.getId());
         assertEquals("name", artist.getName());
 
+        artistRepository.deleteById(artist.getId());
+
+        assertEquals(count, artistRepository.count());
     }
 }
