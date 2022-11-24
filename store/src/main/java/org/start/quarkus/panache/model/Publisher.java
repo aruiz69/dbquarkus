@@ -1,4 +1,4 @@
-package org.start.quarkus.panache;
+package org.start.quarkus.panache.model;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
 
