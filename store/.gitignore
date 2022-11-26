@@ -1,4 +1,4 @@
 target
-store.iml
-../mariadb
-store/create.sql
+../store.iml
+create.sql
+.idea

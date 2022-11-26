@@ -10,17 +10,29 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "t_purcharse_orders")
+@Table(name = "t_purchase_orders")
 public class PurchaseOrder extends PanacheEntity {
-    @Column(name = "created_date")
-    public Instant createdDate = Instant.now();
-    @JoinColumn(name = "customner_purchase_order")
-    @ManyToOne
-    public Customer customer;
-    @OneToMany(mappedBy = "purchaseOrder", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+
+    @Column(name = "purchase_order_date", nullable = false)
+    public LocalDate date = LocalDate.now();
+
+    @OneToMany(mappedBy = "purchaseOrder", cascade = {CascadeType.REMOVE, CascadeType.PERSIST}, orphanRemoval = true)
     public List<OrderLine> orderLines = new ArrayList<>();
+
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "customer_fk")
+    public Customer customer;
+
+    @Column(name = "created_date", nullable = false)
+    public Instant createdDate = Instant.now();
 
     public void addOrderLine(OrderLine orderLine) {
         orderLines.add(orderLine);
+        orderLine.purchaseOrder = this;
+    }
+
+    public void removeOrderLine(OrderLine orderLine) {
+        orderLines.remove(orderLine);
+        orderLine.purchaseOrder = null;
     }
 }

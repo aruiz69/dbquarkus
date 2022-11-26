@@ -7,6 +7,8 @@ import org.start.quarkus.panache.model.Publisher;
 
 import javax.persistence.EntityExistsException;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 @QuarkusTest
@@ -26,9 +28,9 @@ public class PublisherRepositoryTest {
         publisher = Publisher.findById(publisher.id);
 
         publisher = Publisher.findByName("name").orElseThrow(EntityExistsException::new);
-
+        List<Publisher> publisherlst = Publisher.findContainingName("name");
         assertEquals("name", publisher.name);
-
+        assertTrue(1==publisherlst.size());
         Publisher.deleteById(publisher.id);
         assertEquals(count, Publisher.count());
 

@@ -16,7 +16,7 @@ public class Customer {
     private String lastName;
     @Column(name = "e_mail", nullable = false)
     private String email;
-    @Transient
+    @Column(name = "created_date", nullable = false)
     private Instant createdDate = Instant.now();
 
     public Customer() {

@@ -4,7 +4,6 @@ import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "t_book")
 public class Book extends Item{
     @Column(length = 15)
     public String isbn;

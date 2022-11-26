@@ -6,17 +6,22 @@ import javax.persistence.*;
 import java.time.Instant;
 
 @Entity
-@Table(name = "t_purchase_order_line")
+@Table(name = "t_purchase_order_lines")
 public class OrderLine extends PanacheEntity {
-    public Integer quantity;
-    @ManyToOne
+
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "item_fk")
     public Item item;
-    @ManyToOne
+
+    @Column(nullable = false)
+    public Integer quantity;
+
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "purchase_order_fk")
+    //@JsonbTransient
     public PurchaseOrder purchaseOrder;
 
-    @Column(name = "created_date")
+    @Column(name = "created_date", nullable = false)
     public Instant createdDate = Instant.now();
 
 }
