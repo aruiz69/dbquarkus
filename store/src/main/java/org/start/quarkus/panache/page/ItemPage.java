@@ -42,7 +42,7 @@ public class ItemPage {
                                          @QueryParam("size") @DefaultValue("1000") Integer pageSize) {
 
         return Templates.books(Book.find(query, Sort.by(sort)).page(pageIndex, pageSize).list());
-        //http://localhost:8080/page/items/books?query=nbOfPages>100&sort=tite&size=10&page=2
+        //http://localhost:8080/page/items/books?query=nbOfPages>100&sort=title&size=10&page=2
     }
 
     @GET
