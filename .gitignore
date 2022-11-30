@@ -2,3 +2,5 @@
 /.idea
 mariadb
 store/create.sql
+store.iml
+store/store.iml

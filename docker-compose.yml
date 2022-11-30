@@ -25,3 +25,14 @@ services:
       - '33336:3306'
     volumes:
       - ./mariadb:/var/lib/mysql
+  
+  store_datebase:    
+    image: 'postgres:13.3'
+    container_name: "store"
+    ports:
+      - '5432:5432'
+    environment:
+      - POSTGRES_DB=store_database
+      - POSTGRES_USER=userPostgres
+      - POSTGRES_PASSWORD=userPostgresPwd
+    
